@@ -146,6 +146,27 @@ void PeaceSign(auto h1hand)
 	h1hand -> ctrl(RightHand, LeftHand);
 } 
 
+void SelectLeftorRight()
+{
+	std::cout << "Select hand menu" << std::endl;
+	std::cout << "1: Left hand\n2: Right hand" << std::endl;
+	std::cout << "Input: ";
+}
+
+void SelectFingerMenu()
+{
+	std::cout << "Select finger menu" << std::endl;
+	std::cout << "1: Pinky\n2: Ring\n3: Middle\n4: Index\n5: Thumb\n6: Thumb Rotation" << std::endl;
+	std::cout << "Input: ";
+}
+
+int getSelectHandinput()
+{
+    int input; 
+    std::cin >> input;
+    return input;
+}
+
 int main(int argc, char** argv)
 {
     std::cout << " --- Unitree Robotics --- \n";
