@@ -164,6 +164,22 @@ int getSelectHandinput()
 {
     int input; 
     std::cin >> input;
+    
+    switch(input)
+    {
+        case 1: std::cout << "Left hand selected.";
+                break;
+                
+        case 2: std::cout << "Right hand selected.";
+                break;
+                
+        case 3: std::cout << "Both hands selected.";
+                break;
+                
+        default: std::cout << input << "is an invalid input, try again.";
+                 break;
+    }
+    
     return input;
 }
 
