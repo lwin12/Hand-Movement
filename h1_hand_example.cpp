@@ -131,7 +131,7 @@ private:
 /**
  * Main Function
  */
- 
+//=================================================================================================================== 
 void PeaceSign(auto h1hand)
 {	
 	//float pinky, ring, middle, index, thumb, thumb_r = 0;
@@ -149,40 +149,133 @@ void PeaceSign(auto h1hand)
 void SelectLeftorRight()
 {
 	std::cout << "Select hand menu" << std::endl;
-	std::cout << "1: Left hand\n2: Right hand" << std::endl;
-	std::cout << "Input: ";
+	std::cout << "1: Left hand\n2: Right hand\n3: Both hands" << std::endl;
+	std::cout << "\nInput: ";
 }
 
 void SelectFingerMenu()
 {
-	std::cout << "Select finger menu" << std::endl;
+	std::cout << "\nSelect finger menu" << std::endl;
 	std::cout << "1: Pinky\n2: Ring\n3: Middle\n4: Index\n5: Thumb\n6: Thumb Rotation" << std::endl;
-	std::cout << "Input: ";
+	std::cout << "\nInput: ";
 }
 
-int getSelectHandinput()
+int getSelectHandInput()
 {
-    int input; 
-    std::cin >> input;
-    
-    switch(input)
-    {
-        case 1: std::cout << "Left hand selected.";
-                break;
-                
-        case 2: std::cout << "Right hand selected.";
-                break;
-                
-        case 3: std::cout << "Both hands selected.";
-                break;
-                
-        default: std::cout << input << "is an invalid input, try again.";
-                 break;
+    int input,Continue;
+    Continue = 0;
+    while(Continue == 0)  
+    {   
+        SelectLeftorRight();
+        std::cin >> input;
+        switch(input)
+        {
+            case 1 : std::cout << "Left hand selected.\n";
+                     Continue = 1;
+                     break;
+                    
+            case 2 : std::cout << "Right hand selected.\n";
+                     Continue = 1;
+                     break;
+                    
+            case 3 : std::cout << "Both hands selected.\n";
+                     Continue = 1;
+                     break;
+                    
+            default: std::cout << input << " is an invalid input, try again.\n\n";
+                     break;
+        } 
     }
     
     return input;
 }
 
+int getSelectedFingerInput()
+{
+	int input,Continue;
+	Continue = 0;
+	while(Continue == 0)
+	{
+	    SelectFingerMenu();
+	    std::cin >> input;
+    	switch(input)
+    	{
+    		case 1: std::cout << "Pinky finger selected." << std::endl;
+    		        Continue = 1;
+    			    break;
+    
+    		case 2: std::cout << "Ring finger selected." << std::endl;
+    			    Continue = 1;
+    			    break;
+    
+    		case 3: std::cout << "Middle finger selected." << std::endl;
+    			    Continue = 1;
+    			    break;
+    
+    		case 4: std::cout << "Index finger selected." << std::endl;
+    			    Continue = 1;
+    			    break;
+    
+    		case 5: std::cout << "Thumb finger selected." << std::endl;
+    			    Continue = 1;
+    			    break;
+    
+    		case 6: std::cout << "Thumb rotation selected." << std::endl;
+    			    Continue = 1;
+    			    break;
+    
+    		default:std::cout << input << " is an invalid input, try again." << std::endl;
+    			    break;
+    	}
+	}
+	return input;
+}
+
+void setPosition_Execute(int Hand,int Finger)
+{
+    float input, pinky, ring, middle, index, thumb, thumb_r;
+    int Continue = 0;
+    //Eigen::Matrix<float, 6, 1> RightHand = Eigen::Matrix<float, 6, 1>::Constant(1);	
+	//Eigen::Matrix<float, 6, 1> LeftHand = Eigen::Matrix<float, 6, 1>::Constant(1);
+    
+    if(Finger == 1)
+    {
+        while(Continue == 0)
+        {
+            std::cin << input; //sets pinky value 
+            if(input >= 0 && input <= 1)
+            {
+                pinky = input;
+                std::cout << "Pinky position set to " << pinky << "." << std::endl;
+                Continue = 1;
+            }
+            else
+            {
+                std::cout << input <<" is an invalid input, try again." << std::endl;
+            }
+        }
+    }
+    else if(Finger == 2)
+    {
+        
+    }
+
+	//h1hand -> ctrl(RightHand, LeftHand); // Starts from Open hand
+	
+	//usleep(100000);
+	
+	
+	//RightHand << pinky, ring, middle, index, thumb, thumb_r; //PINKY, RING, MIDDLE, INDEX, THUMB, THUMB ROTATION
+	//LeftHand << 0,0,1,1,0,0;  //PINKY, RING, MIDDLE, INDEX, THUMB, THUMB ROTATION
+	//h1hand -> ctrl(RightHand, LeftHand);
+}
+
+void CommandlineUI()
+{
+    getSelectHandInput();
+    getSelectedFingerInput();
+}
+//===================================================================================================================
 int main(int argc, char** argv)
 {
     std::cout << " --- Unitree Robotics --- \n";
